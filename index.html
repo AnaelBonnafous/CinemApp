@@ -58,11 +58,36 @@
 
     <div id="page">
         <h2>Les Acteurs</h2>
+        <svg width="300" height="300">
+            <g>
+                <use href="#soleil"  fill="orange" color="black"></use>
+            </g>
+        </svg>
         
         <ul id="listeActeurs">
             
         </ul>
     </div>
+
+    <svg width="0" height="0">
+        <defs>
+            <symbol id="etoile" viewBox="-300 -300 300 300">
+            <path  d="
+                M 240.000 260.000
+                L 263.511 272.361
+                L 259.021 246.180
+                L 278.042 227.639
+                L 251.756 223.820
+                L 240.000 200.000
+                L 228.244 223.820
+                L 201.958 227.639
+                L 220.979 246.180
+                L 216.489 272.361
+                L 240.000 260.000
+                "/>
+            </symbol>
+        </defs>
+    </svg>
 
     <!-- Templates -->
     <template id="templateActeur">
@@ -92,11 +117,7 @@
                     <button type="button" class="btn btn-warning">VOD</button>
                 </div>
                 <div class="etoilesFilm">
-                    <span class="fa fa-star checkedStar"></span>
-                    <span class="fa fa-star checkedStar"></span>
-                    <span class="fa fa-star checkedStar"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    
                 </div>
             </div>
         </li>
@@ -137,7 +158,6 @@
             })
         }
     </script>
-    <script src="https://use.fontawesome.com/65dbeaf805.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
