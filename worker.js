@@ -11,8 +11,7 @@ self.addEventListener('install', function(event) {
                     'css/style.css',
                     'js/bootstrap.min.js',
                     'js/jquery.min.js',
-                    'js/script.js',
-                    'site.js'
+                    'js/script.js'
                 ]
             );
         })
