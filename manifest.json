@@ -1,10 +1,10 @@
 {
-    "short_name": "cinemapp",
     "name": "CinemApp",
-    "lang": "fr",
+    "short_name": "cinemapp",
     "description": "Application sur le cinéma de type progressive web app déployée sur Netlify",
     "start_url": "https://cinemapp.netlify.app/index.html",
-    "background_color": "#1a1a1a",
+    "lang": "fr",
+    "background_color": "#f1f1f1",
     "theme_color": "#1a1a1a",
     "dir": "ltr",
     "display": "standalone",
