@@ -4,13 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Cinéma</title>
+    <link rel="shortcut icon" href="img/icons/film-solid.svg" type="image/x-icon">
+    <title>CinemApp - Accueil</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
     <div id="page">
+        
         <h2>Les Acteurs</h2>
+        
         <ul id="listeActeurs">
             
         </ul>
@@ -21,11 +63,12 @@
         <li id="acteur">
             <div class="grilleActeur">
                 <img src="" class="photoActeur">
-                <h4><a class="nomActeur" href="#" data-toggle="modal" data-target="#modalFilms"></a></h4>
+                <h4><a class="nomActeur" href="#" data-toggle="modal" data-target="#modalFilms">NOM_AUTEUR</a></h4>
                 <div class="naissanceActeur">
-                    <img src="" class="paysActeur"><span class="dateActeur"></span>
+                    <img src="" class="paysActeur">
+                    <span class="dateActeur">DATE_ACTEUR</span>
                 </div>
-                <div><span class="nbFilmsActeur"></span> films</div>
+                <div><span class="nbFilmsActeur">NB_FILMS_ACTEUR</span> films</div>
             </div>
         </li>
     </template>
@@ -33,11 +76,11 @@
     <template id="templateFilm">
         <li class="film">
             <div class="grilleFilm">
-                <img src="https://workshop.neotechweb.net/ws/ciamovie/1.0.0/films/tombstone.jpg" class="afficheFilm">
-                <h4 class="titreFilm">Tombstone</h4>
-                <div class="infosFilm">1994 / Western</div>
-                <div class="realFilm">George Pan Cosmatos</div>
-                <div class="acteursFilm">Jenette Goldstein</div>
+                <img src="" class="afficheFilm">
+                <h4 class="titreFilm">TITRE_FILM</h4>
+                <div class="infosFilm">ANNEE_FILM / TYPE_FILM</div>
+                <div class="realFilm">REAL_FILM</div>
+                <div class="acteursFilm">ACTEUR_FILM</div>
                 <div>
                     <button type="button" class="btn btn-warning">Séances</button>
                     <button type="button" class="btn btn-warning">VOD</button>
@@ -116,13 +159,13 @@
             const data = await fetch(url);
             const datajson = await data.json();
 
-            let template = document.getElementById("templateFilm");
+            const modalTitle = document.getElementById("modalFilms-title");
+            modalTitle.innerText = `Filmographie de "${acteur.Nom}"`;
             const listeFilms = document.getElementById("listeFilms");
             listeFilms.innerHTML = "";
+            let template = document.getElementById("templateFilm");
             
             datajson.filter(film => film.Acteur == acteur.idActeur).forEach(async film => {
-                const modalTitle = document.getElementById("modalFilms-title");
-                modalTitle.innerText = `Filmographie de "${acteur.Nom}"`;
 
                 let content = template.content.cloneNode(true);
                 
@@ -144,15 +187,6 @@
                 listeFilms.appendChild(content);
             })
         }
-
-        const checkImage = function(path) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = () => resolve({path, image: img, status: 'ok'});
-                img.onerror = () => reject({path, status: 'error'});
-                img.src = path;
-            });
-        } 
     </script>
 </body>
 </html>
