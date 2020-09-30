@@ -29,6 +29,7 @@
 }
 .nomActeur {
     grid-area: nom;
+    font-size: 1.25rem;
     font-weight: bold;
 }
 .naissanceActeur {

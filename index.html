@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/lux.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/icons/film-solid.svg" type="image/x-icon">
     <title>CinemApp - Accueil</title>
@@ -50,7 +50,6 @@
       </nav>
 
     <div id="page">
-        
         <h2>Les Acteurs</h2>
         
         <ul id="listeActeurs">
@@ -62,8 +61,8 @@
     <template id="templateActeur">
         <li id="acteur">
             <div class="grilleActeur">
-                <img src="" class="photoActeur">
-                <h4><a class="nomActeur" href="#" data-toggle="modal" data-target="#modalFilms">NOM_AUTEUR</a></h4>
+                <img src="" class="photoActeur" alt="Photo acteur">
+                <a class="nomActeur" href="#" data-toggle="modal" data-target="#modalFilms">NOM_AUTEUR</a>
                 <div class="naissanceActeur">
                     <img src="" class="paysActeur">
                     <span class="dateActeur">DATE_ACTEUR</span>
@@ -76,7 +75,7 @@
     <template id="templateFilm">
         <li class="film">
             <div class="grilleFilm">
-                <img src="" class="afficheFilm">
+                <img src="" class="afficheFilm" alt="Affiche film">
                 <h4 class="titreFilm">TITRE_FILM</h4>
                 <div class="infosFilm">ANNEE_FILM / TYPE_FILM</div>
                 <div class="realFilm">REAL_FILM</div>
@@ -118,8 +117,8 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
         afficherActeurs();
         async function afficherActeurs() {
