@@ -7,6 +7,7 @@
     <meta name="description" content="Application sur le cinéma de type progressive web app déployée sur Netlify">
     <meta name="theme-color" content="#55595c">
     <link rel="apple-touch-icon" href="/img/icons/cinema/192x192.png">
+    <link rel="preconnect" href="https://workshop.neotechweb.net">
     <link rel="manifest" href="/manifest.webmanifest"> 
     
     <!-- Styles -->
@@ -58,36 +59,10 @@
 
     <div id="page">
         <h2>Les Acteurs</h2>
-        <svg width="300" height="300">
-            <g>
-                <use href="#soleil"  fill="orange" color="black"></use>
-            </g>
-        </svg>
-        
         <ul id="listeActeurs">
             
         </ul>
     </div>
-
-    <svg width="0" height="0">
-        <defs>
-            <symbol id="etoile" viewBox="-300 -300 300 300">
-            <path  d="
-                M 240.000 260.000
-                L 263.511 272.361
-                L 259.021 246.180
-                L 278.042 227.639
-                L 251.756 223.820
-                L 240.000 200.000
-                L 228.244 223.820
-                L 201.958 227.639
-                L 220.979 246.180
-                L 216.489 272.361
-                L 240.000 260.000
-                "/>
-            </symbol>
-        </defs>
-    </svg>
 
     <!-- Templates -->
     <template id="templateActeur">
@@ -146,7 +121,7 @@
     </div>
 
     <!-- Scripts -->
-    <script>
+    <script defer>
         if('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('worker.js')
@@ -158,8 +133,8 @@
             })
         }
     </script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
+    <!-- <script defer src="js/jquery.min.js"></script>
+    <script defer src="js/bootstrap.min.js"></script> -->
+    <script defer src="js/script.js"></script>
 </body>
 </html>
