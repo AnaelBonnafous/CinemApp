@@ -9,7 +9,6 @@
     "dir": "ltr",
     "display": "standalone",
     "orientation": "any",
-    "prefer_related_applications": "false",
     "icons": [
         {
         "src": "/android-icon-192x192-dunplab-manifest-14230.jpg",
