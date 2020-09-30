@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title>Onsen</title>
+</head>
+<body>
+    <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+    <!-- <ons-page>
+        <ons-toolbar>
+            <div class="center">CinemApp</div>
+        </ons-toolbar>
+
+        <ons-tabbar swipeable position="auto">
+            <ons-tab page="page1.html" label="Acteurs" icon="md-face" badge="2" active>
+            </ons-tab>
+            <ons-tab page="page2.html" label="Films" icon="md-movie" badge="2">
+            </ons-tab>
+        </ons-tabbar>
+    </ons-page> -->
+
+    <template id="page1.html">
+        <ons-page id="pageActeurs">
+            <ons-list>
+                <ons-list-item modifier="chevron" class="acteur">
+                    Acteur 1
+                </ons-list-item>
+                <ons-list-item modifier="chevron" class="acteur">
+                    Acteur 2
+                </ons-list-item>
+            </ons-list>
+        </ons-page>
+    </template>
+
+    <template id="page2.html">
+        <ons-page id="pageFilms">
+            <ons-list>
+                <ons-list-item class="film">
+                    Film 1
+                </ons-list-item>
+                <ons-list-item class="film">
+                    Film 2
+                </ons-list-item>
+            </ons-list>
+        </ons-page>
+    </template>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        document.addEventListener('prechange', function(event) {
+            document.querySelector('ons-toolbar .center')
+            .innerHTML = event.tabItem.getAttribute('label');
+        });
+
+        document.addEventListener('init', function(event) {
+            var page = event.target;
+
+            if(page.id == 'pageActeurs') {
+                page.querySelector(".acteur").addEventListener("touchstart", function(evt) {
+                    document.querySelector('#myNavigator')
+                    .pushPage('page2.html');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
