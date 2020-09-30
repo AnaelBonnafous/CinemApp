@@ -2,7 +2,7 @@
     "name": "CinemApp",
     "short_name": "cinemapp",
     "description": "Application sur le cinéma de type progressive web app déployée sur Netlify",
-    "start_url": "https://cinemapp.netlify.app/index.html",
+    "start_url": "/index.html",
     "lang": "fr",
     "background_color": "#f1f1f1",
     "theme_color": "#1a1a1a",
@@ -11,72 +11,73 @@
     "orientation": "any",
     "icons": [
         {
-        "src": "/512x512.png",
+        "src": "/img/icons/cinema/512x512.png",
         "type": "image/png",
         "sizes": "512x512"
         },
         {
-        "src": "/192x192.png",
+        "src": "/img/icons/cinema/192x192.png",
         "type": "image/png",
-        "sizes": "192x192"
+        "sizes": "192x192",
+        "purpose": "maskable"
         },
         {
-        "src": "/180x180.png",
+        "src": "/img/icons/cinema/180x180.png",
         "type": "image/png",
         "sizes": "180x180"
         },
         {
-        "src": "/152x152.png",
+        "src": "/img/icons/cinema/152x152.png",
         "type": "image/png",
         "sizes": "152x152"
         },
         {
-        "src": "/144x144.png",
+        "src": "/img/icons/cinema/144x144.png",
         "type": "image/png",
         "sizes": "144x144"
         },
         {
-        "src": "/120x120.png",
+        "src": "/img/icons/cinema/120x120.png",
         "type": "image/png",
         "sizes": "120x120"
         },
         {
-        "src": "/114x114.png",
+        "src": "/img/icons/cinema/114x114.png",
         "type": "image/png",
         "sizes": "114x114"
         },
         {
-        "src": "/96x96.png",
+        "src": "/img/icons/cinema/96x96.png",
         "type": "image/png",
         "sizes": "96x96"
         },
         {
-        "src": "/76x76.png",
+        "src": "/img/icons/cinema/76x76.png",
         "type": "image/png",
         "sizes": "76x76"
         },
         {
-        "src": "/72x72.png",
+        "src": "/img/icons/cinema/72x72.png",
         "type": "image/png",
         "sizes": "72x72"
         },
         {
-        "src": "/60x60.png",
+        "src": "/img/icons/cinema/60x60.png",
         "type": "image/png",
         "sizes": "60x60"
         },
         {
-        "src": "/57x57.png",
+        "src": "/img/icons/cinema/57x57.png",
         "type": "image/png",
         "sizes": "57x57"
         },
         {
-        "src": "/32x32.png",
+        "src": "/img/icons/cinema/32x32.png",
         "type": "image/png",
         "sizes": "32x32"
         },
         {
-        "src": "/16x16.png",
+        "src": "/img/icons/cinema/16x16.png",
         "type": "image/png",
         "sizes": "16x16"
         }
