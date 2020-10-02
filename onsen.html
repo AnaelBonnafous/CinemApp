@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
+
     <title>Onsen</title>
 </head>
+
 <body>
     <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
 
-    <!-- <ons-page>
-        <ons-toolbar>
-            <div class="center">CinemApp</div>
-        </ons-toolbar>
 
+    <!-- <ons-page>
         <ons-tabbar swipeable position="auto">
             <ons-tab page="page1.html" label="Acteurs" icon="md-face" badge="2" active>
             </ons-tab>
@@ -29,48 +29,161 @@
 
     <template id="page1.html">
         <ons-page id="pageActeurs">
-            <ons-list>
-                <ons-list-item modifier="chevron" class="acteur">
-                    Acteur 1
-                </ons-list-item>
-                <ons-list-item modifier="chevron" class="acteur">
-                    Acteur 2
-                </ons-list-item>
+            <ons-toolbar>
+                <div class="center">CinemApp</div>
+            </ons-toolbar>
+
+            <ons-list id="listeActeurs">
+                
             </ons-list>
         </ons-page>
     </template>
 
     <template id="page2.html">
         <ons-page id="pageFilms">
-            <ons-list>
-                <ons-list-item class="film">
-                    Film 1
-                </ons-list-item>
-                <ons-list-item class="film">
-                    Film 2
-                </ons-list-item>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Retour</ons-back-button>
+                </div>
+            
+                <div class="center">CinemApp</div>
+            </ons-toolbar>
+
+            <ons-list id="listeFilms">
+                
             </ons-list>
         </ons-page>
+    </template>
+
+    <template id="templateActeur">
+        <ons-list-item modifier="chevron" class="acteur" tappable
+            data-idActeur="0" data-nomActeur="">
+            <div class="left">
+                <img src="" class="list-item__thumbnail photoActeur" alt="Photo acteur">
+            </div>
+            <div class="center">
+                <span class="list-item__title nomActeur">NOM_AUTEUR</span>
+                <span class="list-item__subtitle">
+                    <img src="" class="paysActeur" alt="Pays acteur"> 
+                    <span class="dateActeur">DATE_ACTEUR</span><br>
+                    <span class="nbFilmsActeur">NB_FILMS_ACTEUR</span> films
+                </span>
+            </div>
+        </ons-list-item>
+    </template>
+
+    <template id="templateFilm">
+        <ons-list-item class="film" tappable>
+            <div class="left">
+                <img src="" class="list-item__thumbnail afficheFilm" alt="Affiche film">
+            </div>
+            <div class="center">
+                <span class="list-item__title titreFilm">TITRE_FILM</span>
+                <span class="list-item__subtitle">
+                    <div class="infosFilm">ANNEE_FILM / TYPE_FILM</div>
+                    <div class="realFilm">REAL_FILM</div>
+                    <div class="acteursFilm">ACTEUR_FILM</div>
+                    <div>
+                        <button type="button" class="btn btn-warning">Séances</button>
+                        <button type="button" class="btn btn-warning">VOD</button>
+                    </div>
+                    <div class="etoilesFilm">
+                        
+                    </div>
+                </span>
+            </div>
+        </ons-list-item>
     </template>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script>
-        document.addEventListener('prechange', function(event) {
-            document.querySelector('ons-toolbar .center')
-            .innerHTML = event.tabItem.getAttribute('label');
-        });
-
         document.addEventListener('init', function(event) {
             var page = event.target;
 
-            if(page.id == 'pageActeurs') {
-                page.querySelector(".acteur").addEventListener("touchstart", function(evt) {
-                    document.querySelector('#myNavigator')
-                    .pushPage('page2.html');
-                });
+            if (page.id == 'pageActeurs') {
+                getActeurs();
+            } else if (page.id == 'pageFilms') {
+                page.querySelector('ons-toolbar .center').innerHTML = page.data.nomActeur;
+                getFilms(page.data);
             }
         });
+
+        async function getActeurs() {
+            const url = "https://workshop.neotechweb.net/ws/ciamovie/1.0.0/acteurs.php";
+            const data = await fetch(url);
+            const datajson = await data.json();
+
+            let template = document.getElementById("templateActeur");
+            let listeActeurs = document.getElementById("listeActeurs");
+
+            datajson.forEach(async acteur => {
+                let content = template.content.cloneNode(true);
+
+                // Photo
+                content.querySelector(".photoActeur").src = `https://workshop.neotechweb.net/ws/ciamovie/1.0.0/acteurs/${acteur.idActeur}.jpg`;
+                // Nom
+                const nomActeur = content.querySelector(".nomActeur");
+                nomActeur.innerText = acteur.Nom;
+                // Naissance
+                // Pays
+                content.querySelector(".paysActeur").src = "https://workshop.neotechweb.net/ws/flags/64/us.png";
+                // Date
+                content.querySelector(".dateActeur").innerText = " 8 octobre 1949";
+                // Films
+                const urlFilms = "https://workshop.neotechweb.net/ws/ciamovie/1.0.0/films.php";
+                const dataFilms = await fetch(urlFilms);
+                const datajsonFilms = await dataFilms.json();
+                const nombreFilms = datajsonFilms.filter(film => film.Acteur == acteur.idActeur).length;
+                content.querySelector(".nbFilmsActeur").innerText = nombreFilms;
+
+                content.firstElementChild.dataset.idActeur = acteur.idActeur;
+                content.firstElementChild.dataset.nomActeur = acteur.Nom;
+
+                content.firstElementChild.addEventListener("click", function(event) {
+                    document.querySelector('#myNavigator')
+                        .pushPage('page2.html', {
+                            data: {
+                                idActeur: event.currentTarget.dataset.idActeur,
+                                nomActeur: event.currentTarget.dataset.nomActeur,
+                            }
+                        });
+                });
+
+                listeActeurs.appendChild(content);
+            });
+        }
+
+        async function getFilms(acteur) {
+            const url = "https://workshop.neotechweb.net/ws/ciamovie/1.0.0/films.php";
+            const data = await fetch(url);
+            const datajson = await data.json();
+
+            // const modalTitle = document.getElementById("modalFilms-title");
+            // modalTitle.innerText = `Filmographie de "${acteur.Nom}"`;
+            const listeFilms = document.getElementById("listeFilms");
+            listeFilms.innerHTML = "";
+            let template = document.getElementById("templateFilm");
+
+            datajson.filter(film => film.Acteur == acteur.idActeur).forEach(async film => {
+
+                let content = template.content.cloneNode(true);
+
+                // Affiche
+                content.querySelector(".afficheFilm").src = `https://workshop.neotechweb.net/ws/ciamovie/1.0.0/films/${film.Fichier}`;
+                // Titre
+                content.querySelector(".titreFilm").innerText = film.Titre;
+                // Infos
+                content.querySelector(".infosFilm").innerText = `${film.Annee} / ${film.Genre}`;
+                // Realisation
+                content.querySelector(".realFilm").innerText = film.Realisateur;
+                // Acteurs
+                content.querySelector(".acteursFilm").innerText = acteur.nomActeur;
+
+                listeFilms.appendChild(content);
+            })
+        }
     </script>
 </body>
+
 </html>

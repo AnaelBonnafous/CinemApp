@@ -1,0 +1,100 @@
+#page {
+    padding: 20px;
+}
+
+#listeActeurs {
+    list-style: none;
+}
+
+.acteur {
+    margin-top: 20px;
+}
+
+.grilleActeur {
+    display: grid;
+    text-align: left;
+    grid-template-areas: 
+    "photo nom"
+    "photo naissance"
+    "photo films";
+    grid-template-columns: max-content auto;
+    grid-template-rows: repeat(2, max-content) auto;
+}
+
+.photoActeur {
+    grid-area: photo;
+    width: 100px;
+    margin-right: 20px;
+    border-radius: 50px;
+}
+.nomActeur {
+    grid-area: nom;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.naissanceActeur {
+    grid-area: naissance;
+    font-weight: 500;
+}
+.filmsActeur {
+    grid-area: films;
+    font-weight: 400;
+}
+.paysActeur {
+    width: 20px;
+}
+.nbFilmsActeur {
+    background: round orange;
+    border-radius: 10px;
+}
+
+#listeFilms {
+    list-style: none;
+}
+
+.film {
+    margin-top: 20px;
+}
+
+.grilleFilm {
+    display: grid;
+    text-align: left;
+    grid-template-areas: 
+    "affiche titre"
+    "affiche infos"
+    "affiche real"
+    "affiche acteurs"
+    "affiche boutons"
+    "affiche etoiles";
+    grid-template-columns: max-content auto;
+}
+
+.afficheFilm {
+    grid-area: affiche;
+    height: 200px;
+    margin-right: 20px;
+}
+.titreFilm {
+    grid-area: titre;
+    font-weight: bold;
+}
+.infosFilm {
+    grid-area: infos;
+}
+.realFilm {
+    grid-area: real;
+}
+.acteursFilm {
+    grid-area: acteurs;
+}
+.boutonsFilm {
+    grid-area: boutons;
+    margin-right: 20px;
+}
+.etoilesFilm {
+    grid-area: etoiles;
+}
+
+.checkedStar {
+    color: orange;
+}
